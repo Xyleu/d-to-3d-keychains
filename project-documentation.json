@@ -1,0 +1,240 @@
+{
+  "project": {
+    "name": "3D Keychain Designer",
+    "version": "1.0.0",
+    "target_audience": ["Women", "Kids", "Gift shoppers"],
+    "tech_stack": {
+      "frontend": {
+        "framework": "React with Vite",
+        "styling": "Tailwind CSS",
+        "3d_library": "Three.js (@react-three/fiber, @react-three/drei)",
+        "ui_components": "shadcn/ui",
+        "routing": "React Router DOM",
+        "language": "TypeScript"
+      },
+      "backend": {
+        "current": "None (Frontend only)",
+        "planned": "Supabase (authentication, database, storage)"
+      }
+    }
+  },
+  
+  "design_system": {
+    "colors": {
+      "primary": {
+        "name": "Coral Pink",
+        "hsl": "350 65% 65%",
+        "usage": "Main brand color, CTAs, important elements"
+      },
+      "secondary": {
+        "name": "Lavender",
+        "hsl": "270 50% 75%",
+        "usage": "Supporting elements, secondary actions"
+      },
+      "tertiary": {
+        "name": "Mint Green",
+        "hsl": "160 45% 70%",
+        "usage": "Success states, accents"
+      },
+      "accent": {
+        "name": "Sunshine Yellow",
+        "hsl": "45 90% 70%",
+        "usage": "Highlights, badges, special features"
+      },
+      "background": {
+        "name": "Soft Pastel",
+        "hsl": "30 40% 99%",
+        "usage": "Main background color"
+      }
+    },
+    
+    "typography": {
+      "display_font": "Quicksand",
+      "body_font": "Inter",
+      "characteristics": "Rounded, friendly, playful"
+    },
+    
+    "gradients": {
+      "primary": "linear-gradient(135deg, Coral Pink, Lavender)",
+      "secondary": "linear-gradient(135deg, Mint Green, Sunshine Yellow)",
+      "aurora": "45deg multi-color pastel gradient",
+      "soft": "180deg subtle pastel blend"
+    },
+    
+    "animations": {
+      "float": "3s ease-in-out infinite vertical movement",
+      "bounce-gentle": "2s ease-in-out infinite scale and translate",
+      "shimmer": "3s linear infinite background position",
+      "fade-up": "0.5s ease-out opacity and translate"
+    },
+    
+    "ui_principles": [
+      "Rounded corners (1rem radius)",
+      "Soft shadows with color tints",
+      "Playful hover effects",
+      "Smooth transitions",
+      "Child-friendly interface",
+      "Large touch targets"
+    ]
+  },
+  
+  "current_features": {
+    "landing_page": {
+      "hero_section": {
+        "status": "completed",
+        "components": ["Hero.tsx"],
+        "features": [
+          "Animated background elements",
+          "Call-to-action buttons",
+          "Statistics display",
+          "Hero image showcase"
+        ]
+      },
+      "features_section": {
+        "status": "completed",
+        "components": ["Features.tsx"],
+        "features": [
+          "Six feature cards",
+          "Icons and descriptions",
+          "Responsive grid layout"
+        ]
+      }
+    },
+    
+    "image_upload": {
+      "status": "completed",
+      "components": ["ImageUploader.tsx"],
+      "features": [
+        "Drag and drop support",
+        "File validation",
+        "Preview display",
+        "Playful animations",
+        "Multiple format support (JPG, PNG, GIF, WebP)"
+      ]
+    },
+    
+    "3d_viewer": {
+      "status": "completed",
+      "components": ["Canvas3D.tsx"],
+      "features": [
+        "Interactive 3D keychain model",
+        "Texture mapping from uploaded image",
+        "Orbit controls (rotate, zoom, pan)",
+        "Real-time thickness adjustment",
+        "Keychain hole positioning",
+        "Ambient and directional lighting"
+      ]
+    },
+    
+    "control_panel": {
+      "status": "completed",
+      "components": ["ControlPanel.tsx"],
+      "features": [
+        "Thickness slider (2-10mm)",
+        "Hole position selector (9 positions)",
+        "Download STL button",
+        "Reset button",
+        "Responsive layout"
+      ]
+    }
+  },
+  
+  "project_rules": {
+    "code_standards": [
+      "Use TypeScript for type safety",
+      "Component-based architecture",
+      "Semantic HTML elements",
+      "Design system tokens only (no hardcoded colors)",
+      "All colors must be HSL format",
+      "Responsive design mandatory",
+      "Accessibility considerations"
+    ],
+    
+    "file_structure": {
+      "components": "Reusable UI components in src/components/",
+      "pages": "Route pages in src/pages/",
+      "assets": "Images and static files in src/assets/",
+      "ui_components": "shadcn components in src/components/ui/",
+      "hooks": "Custom hooks in src/hooks/"
+    },
+    
+    "styling_rules": [
+      "Always use design system tokens",
+      "Never use direct colors (text-white, bg-black, etc.)",
+      "Customize shadcn components with variants",
+      "Maintain consistency across all components",
+      "Mobile-first responsive approach"
+    ]
+  },
+  
+  "future_plans": {
+    "phase_1_enhancements": {
+      "timeline": "Next iteration",
+      "features": [
+        "Image cropping and editing tools",
+        "Multiple material options (plastic, metal, wood)",
+        "Color customization for keychain",
+        "Text overlay on keychain",
+        "Size presets (small, medium, large)"
+      ]
+    },
+    
+    "phase_2_backend": {
+      "timeline": "After Phase 1",
+      "technology": "Supabase integration",
+      "features": [
+        "User authentication (email, social login)",
+        "Save designs to user account",
+        "Design gallery and sharing",
+        "Order history tracking",
+        "Cloud storage for uploaded images"
+      ]
+    },
+    
+    "phase_3_ecommerce": {
+      "timeline": "After Phase 2",
+      "features": [
+        "Shopping cart functionality",
+        "Payment integration (Stripe)",
+        "Order processing workflow",
+        "Shipping calculator",
+        "Bulk order discounts",
+        "Promo codes and discounts"
+      ]
+    },
+    
+    "phase_4_advanced": {
+      "timeline": "Long-term",
+      "features": [
+        "AI-powered image enhancement",
+        "AR preview (view keychain in real world)",
+        "Custom shape options beyond rectangle",
+        "Multi-image collage keychains",
+        "Collaborative design (share with friends)",
+        "Mobile app version",
+        "3D printing service integration",
+        "Marketplace for user designs"
+      ]
+    }
+  },
+  
+  "optimization_goals": [
+    "Lazy load 3D viewer components",
+    "Optimize image uploads (compression, resizing)",
+    "Implement progressive web app features",
+    "CDN for static assets",
+    "Code splitting for better performance",
+    "SEO optimization for organic traffic"
+  ],
+  
+  "business_model": {
+    "revenue_streams": [
+      "Direct keychain sales",
+      "Premium design features",
+      "Bulk order discounts",
+      "White-label solutions for businesses",
+      "Design marketplace commission"
+    ],
+    "pricing_strategy": "Freemium model with paid manufacturing"
+  }
+}
