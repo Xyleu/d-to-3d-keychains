@@ -1,5 +1,5 @@
 import { useState, useCallback } from "react";
-import { Upload, Image as ImageIcon, X } from "lucide-react";
+import { Upload, Image as ImageIcon, X, Edit2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 
@@ -7,9 +7,10 @@ interface ImageUploaderProps {
   onImageUpload: (file: File) => void;
   uploadedImage: string | null;
   onClear: () => void;
+  onEdit?: () => void;
 }
 
-export const ImageUploader = ({ onImageUpload, uploadedImage, onClear }: ImageUploaderProps) => {
+export const ImageUploader = ({ onImageUpload, uploadedImage, onClear, onEdit }: ImageUploaderProps) => {
   const [isDragging, setIsDragging] = useState(false);
 
   const handleDragOver = useCallback((e: React.DragEvent) => {
@@ -48,14 +49,26 @@ export const ImageUploader = ({ onImageUpload, uploadedImage, onClear }: ImageUp
   if (uploadedImage) {
     return (
       <div className="relative rounded-3xl overflow-hidden shadow-float bg-card-soft p-8">
-        <Button
-          variant="ghost"
-          size="icon"
-          onClick={onClear}
-          className="absolute top-4 right-4 z-10 bg-background/80 backdrop-blur-sm"
-        >
-          <X className="w-4 h-4" />
-        </Button>
+        <div className="absolute top-4 right-4 z-10 flex gap-2">
+          {onEdit && (
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={onEdit}
+              className="bg-background/80 backdrop-blur-sm"
+            >
+              <Edit2 className="w-4 h-4" />
+            </Button>
+          )}
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={onClear}
+            className="bg-background/80 backdrop-blur-sm"
+          >
+            <X className="w-4 h-4" />
+          </Button>
+        </div>
         <div className="aspect-square max-w-md mx-auto rounded-2xl overflow-hidden bg-background">
           <img 
             src={uploadedImage} 
