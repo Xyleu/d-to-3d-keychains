@@ -167,55 +167,149 @@
     ]
   },
   
-  "future_plans": {
-    "phase_1_enhancements": {
-      "timeline": "Next iteration",
-      "features": [
-        "Image cropping and editing tools",
-        "Multiple material options (plastic, metal, wood)",
-        "Color customization for keychain",
-        "Text overlay on keychain",
-        "Size presets (small, medium, large)"
+  "project_roadmap": {
+    "goal": "Create a seamless, all-in-one web service that converts user-uploaded 2D images into customizable, 3D printable keychain files",
+    
+    "phase_1_planning_research": {
+      "description": "Establish the business model and define the minimum viable product (MVP)",
+      "status": "In Progress",
+      "tasks": [
+        {
+          "task_id": "P1-T1",
+          "task_name": "Market Research",
+          "responsible_party": "Business",
+          "description": "Analyze competitors and identify target niche (women, kids, gift shoppers)",
+          "status": "Completed",
+          "notes": "Targeting women and kids market with playful design"
+        },
+        {
+          "task_id": "P1-T2",
+          "task_name": "Technology Stack Selection",
+          "responsible_party": "Full-stack",
+          "description": "Choose core technologies",
+          "status": "Completed",
+          "notes": "React, Vite, Three.js, TypeScript, Tailwind CSS, Supabase (planned)"
+        },
+        {
+          "task_id": "P1-T3",
+          "task_name": "User Experience (UX) Design",
+          "responsible_party": "Frontend",
+          "description": "Sketch user flow from image upload to customization and download",
+          "status": "Completed",
+          "notes": "Playful pastel design system implemented"
+        }
       ]
     },
     
-    "phase_2_backend": {
-      "timeline": "After Phase 1",
-      "technology": "Supabase integration",
-      "features": [
-        "User authentication (email, social login)",
-        "Save designs to user account",
-        "Design gallery and sharing",
-        "Order history tracking",
-        "Cloud storage for uploaded images"
+    "phase_2_development": {
+      "description": "Build the core functionality of the system, starting with the MVP",
+      "status": "In Progress",
+      "tasks": [
+        {
+          "task_id": "P2-T1",
+          "task_name": "Backend Setup",
+          "responsible_party": "Backend",
+          "description": "Set up server, API endpoints for file uploads",
+          "status": "Pending",
+          "notes": "Will use Supabase for backend services"
+        },
+        {
+          "task_id": "P2-T2",
+          "task_name": "2D to 3D Conversion Logic",
+          "responsible_party": "Frontend/3D",
+          "description": "Convert JPG to 3D model using Three.js",
+          "status": "Completed",
+          "notes": "Using Three.js for real-time 3D rendering"
+        },
+        {
+          "task_id": "P2-T3",
+          "task_name": "Frontend Development",
+          "responsible_party": "Frontend",
+          "description": "Build UI for file upload and 3D model preview",
+          "status": "Completed",
+          "notes": "Drag-and-drop upload and 3D viewer implemented"
+        },
+        {
+          "task_id": "P2-T4",
+          "task_name": "Customization Features Logic",
+          "responsible_party": "Frontend/3D",
+          "description": "Implement thickness adjustment and keychain hole positioning",
+          "status": "Completed",
+          "notes": "Thickness slider (2-10mm) and 9 hole positions"
+        },
+        {
+          "task_id": "P2-T5",
+          "task_name": "Frontend Customization UI",
+          "responsible_party": "Frontend",
+          "description": "Create sliders and interactive elements for customization",
+          "status": "Completed",
+          "notes": "Control panel with sliders and position selector"
+        }
       ]
     },
     
-    "phase_3_ecommerce": {
-      "timeline": "After Phase 2",
-      "features": [
-        "Shopping cart functionality",
-        "Payment integration (Stripe)",
-        "Order processing workflow",
-        "Shipping calculator",
-        "Bulk order discounts",
-        "Promo codes and discounts"
-      ]
-    },
-    
-    "phase_4_advanced": {
-      "timeline": "Long-term",
-      "features": [
-        "AI-powered image enhancement",
-        "AR preview (view keychain in real world)",
-        "Custom shape options beyond rectangle",
-        "Multi-image collage keychains",
-        "Collaborative design (share with friends)",
-        "Mobile app version",
-        "3D printing service integration",
-        "Marketplace for user designs"
+    "phase_3_testing_deployment": {
+      "description": "Refine the system, ensure stability, and prepare for public launch",
+      "status": "Upcoming",
+      "tasks": [
+        {
+          "task_id": "P3-T1",
+          "task_name": "System Integration & Testing",
+          "responsible_party": "Full-stack",
+          "description": "Test full user flow and handle common errors",
+          "status": "Pending"
+        },
+        {
+          "task_id": "P3-T2",
+          "task_name": "Cloud Deployment",
+          "responsible_party": "Backend",
+          "description": "Deploy to cloud service and set up domain",
+          "status": "Pending",
+          "notes": "Consider Vercel for frontend, Supabase for backend"
+        },
+        {
+          "task_id": "P3-T3",
+          "task_name": "Launch & Marketing",
+          "responsible_party": "Business",
+          "description": "Launch website and promote on social media",
+          "status": "Pending"
+        }
       ]
     }
+  },
+  
+  "future_enhancements": {
+    "short_term": [
+      "Image cropping and editing tools",
+      "Multiple material options (plastic, metal, wood)",
+      "Color customization for keychain",
+      "Text overlay on keychain",
+      "Size presets (small, medium, large)",
+      "Save designs to user account (Supabase auth)",
+      "Design gallery and sharing"
+    ],
+    
+    "medium_term": [
+      "Shopping cart functionality",
+      "Payment integration (Stripe)",
+      "Order processing workflow",
+      "Shipping calculator",
+      "Bulk order discounts",
+      "Promo codes",
+      "Order history tracking",
+      "Cloud storage for uploaded images"
+    ],
+    
+    "long_term": [
+      "AI-powered image enhancement",
+      "AR preview (view keychain in real world)",
+      "Custom shape options beyond rectangle",
+      "Multi-image collage keychains",
+      "Collaborative design (share with friends)",
+      "Mobile app version",
+      "3D printing service integration",
+      "Marketplace for user designs"
+    ]
   },
   
   "optimization_goals": [
