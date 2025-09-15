@@ -7,13 +7,15 @@ import {
   ZoomIn,
   ZoomOut,
   Palette,
-  Sun
+  Sun,
+  Scissors
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Slider } from "@/components/ui/slider";
 import { Label } from "@/components/ui/label";
 import { Card } from "@/components/ui/card";
 import { toast } from "sonner";
+import { ImageCropper } from "./ImageCropper";
 
 interface ImageEditorProps {
   imageUrl: string;
@@ -29,10 +31,12 @@ export const ImageEditor = ({ imageUrl, onSave, onCancel }: ImageEditorProps) =>
   const [contrast, setContrast] = useState(100);
   const [flipH, setFlipH] = useState(false);
   const [flipV, setFlipV] = useState(false);
+  const [showCropper, setShowCropper] = useState(false);
+  const [currentImage, setCurrentImage] = useState(imageUrl);
 
   useEffect(() => {
     applyFilters();
-  }, [rotation, scale, brightness, contrast, flipH, flipV, imageUrl]);
+  }, [rotation, scale, brightness, contrast, flipH, flipV, currentImage]);
 
   const applyFilters = () => {
     const canvas = canvasRef.current;
@@ -76,7 +80,13 @@ export const ImageEditor = ({ imageUrl, onSave, onCancel }: ImageEditorProps) =>
       // Restore context state
       ctx.restore();
     };
-    img.src = imageUrl;
+    img.src = currentImage;
+  };
+
+  const handleCrop = (croppedImage: string) => {
+    setCurrentImage(croppedImage);
+    setShowCropper(false);
+    toast.success("Image cropped!");
   };
 
   const handleSave = () => {
@@ -105,6 +115,16 @@ export const ImageEditor = ({ imageUrl, onSave, onCancel }: ImageEditorProps) =>
     toast.info("All edits have been reset");
   };
 
+  if (showCropper) {
+    return (
+      <ImageCropper
+        imageUrl={currentImage}
+        onCrop={handleCrop}
+        onCancel={() => setShowCropper(false)}
+      />
+    );
+  }
+
   return (
     <Card className="p-6 bg-card-soft border-2 border-primary/20">
       <div className="space-y-6">
@@ -128,7 +148,16 @@ export const ImageEditor = ({ imageUrl, onSave, onCancel }: ImageEditorProps) =>
         </div>
 
         {/* Quick Actions */}
-        <div className="grid grid-cols-4 gap-2">
+        <div className="grid grid-cols-5 gap-2">
+          <Button
+            variant="soft"
+            size="sm"
+            onClick={() => setShowCropper(true)}
+            className="gap-1"
+          >
+            <Scissors className="w-4 h-4" />
+            Crop
+          </Button>
           <Button
             variant="soft"
             size="sm"

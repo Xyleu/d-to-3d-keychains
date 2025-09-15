@@ -26,7 +26,12 @@ const fontOptions = [
   { value: "Inter", label: "Inter (Clean)" },
   { value: "Playfair Display", label: "Playfair (Elegant)" },
   { value: "Comic Sans MS", label: "Comic Sans (Fun)" },
-  { value: "Pacifico", label: "Pacifico (Cursive)" }
+  { value: "Pacifico", label: "Pacifico (Cursive)" },
+  { value: "Dancing Script", label: "Dancing Script (Script)" },
+  { value: "Bebas Neue", label: "Bebas Neue (Bold)" },
+  { value: "Satisfy", label: "Satisfy (Handwritten)" },
+  { value: "Caveat", label: "Caveat (Casual)" },
+  { value: "Permanent Marker", label: "Marker (Fun)" }
 ];
 
 const colorOptions = [

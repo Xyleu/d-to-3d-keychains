@@ -9,9 +9,10 @@ import { MaterialSelector, materials } from "@/components/MaterialSelector";
 import { TextOverlay, TextOverlayConfig } from "@/components/TextOverlay";
 import { SizeSelector, sizePresets } from "@/components/SizeSelector";
 import { ColorCustomizer } from "@/components/ColorCustomizer";
+import { ShapeSelector, type KeychainShape } from "@/components/ShapeSelector";
 import { toast } from "sonner";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Settings, Palette, Type, Package } from "lucide-react";
+import { Settings, Palette, Type, Package, Hexagon } from "lucide-react";
 
 const Index = () => {
   const [uploadedImage, setUploadedImage] = useState<string | null>(null);
