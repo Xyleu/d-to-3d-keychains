@@ -28,8 +28,13 @@ const KeychainModel = ({
   const meshRef = useRef<THREE.Mesh>(null);
   const [hovered, setHovered] = useState(false);
 
-  // Create texture from image
+  // Create texture from image with proper transparency handling
   const texture = imageTexture ? new THREE.TextureLoader().load(imageTexture) : null;
+  
+  // Set texture properties for transparency
+  if (texture) {
+    texture.format = THREE.RGBAFormat;
+  }
 
   // Determine color based on selection
   const getKeychainColor = () => {
@@ -39,6 +44,9 @@ const KeychainModel = ({
       return "#FF7F50";
     } else if (keychainColor === "aurora") {
       return "#764ba2";
+    } else if (keychainColor === "#FFFFFF" && texture) {
+      // If white is selected and there's a texture, use transparent material
+      return "transparent";
     } else if (keychainColor === "#FFFFFF" && !texture) {
       return material.color;
     } else {
@@ -57,15 +65,19 @@ const KeychainModel = ({
         onPointerOut={() => setHovered(false)}
       >
         <meshStandardMaterial 
-          color={hovered ? "#FFB6C1" : getKeychainColor()}
-          map={keychainColor === "#FFFFFF" ? texture : null}
+          color={getKeychainColor() === "transparent" ? "#FFFFFF" : (hovered ? "#FFB6C1" : getKeychainColor())}
+          map={texture}
+          transparent={texture !== null}
+          opacity={getKeychainColor() === "transparent" ? 0 : 1}
+          alphaMap={texture}
           roughness={material.roughness}
           metalness={material.metalness}
+          side={THREE.DoubleSide}
         />
       </Box>
 
-      {/* Text overlay */}
-      {textConfig && textConfig.text && (
+      {/* Text overlay - Only render if texture exists to prevent model disappearing */}
+      {textConfig && textConfig.text && texture !== null && (
         <Text
           position={[textConfig.position.x, textConfig.position.y, size.depth / 2 + 0.01]}
           fontSize={textConfig.fontSize / 100}

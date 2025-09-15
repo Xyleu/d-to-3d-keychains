@@ -4,7 +4,7 @@ import { Features } from "@/components/Features";
 import { ImageUploader } from "@/components/ImageUploader";
 import { ImageEditor } from "@/components/ImageEditor";
 import { Canvas3D } from "@/components/Canvas3D";
-import { ControlPanel } from "@/components/ControlPanel";
+import { FreeKeyholePositioner } from "@/components/FreeKeyholePositioner";
 import { MaterialSelector, materials } from "@/components/MaterialSelector";
 import { TextOverlay, TextOverlayConfig } from "@/components/TextOverlay";
 import { SizeSelector, sizePresets } from "@/components/SizeSelector";
@@ -12,7 +12,11 @@ import { ColorCustomizer } from "@/components/ColorCustomizer";
 import { ShapeSelector, type KeychainShape } from "@/components/ShapeSelector";
 import { toast } from "sonner";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Settings, Palette, Type, Package, Hexagon } from "lucide-react";
+import { Settings, Palette, Type, Package, Hexagon, Layers, Download, Sparkles } from "lucide-react";
+import { Card } from "@/components/ui/card";
+import { Label } from "@/components/ui/label";
+import { Button } from "@/components/ui/button";
+import { Slider } from "@/components/ui/slider";
 
 const Index = () => {
   const [uploadedImage, setUploadedImage] = useState<string | null>(null);
@@ -155,13 +159,106 @@ const Index = () => {
                     </TabsList>
 
                     <TabsContent value="basic" className="space-y-6 mt-6">
-                      <ControlPanel 
-                        thickness={thickness}
-                        onThicknessChange={(value) => setThickness(value[0])}
-                        keychainHolePosition={keychainHolePosition}
-                        onKeychainHoleChange={setKeychainHolePosition}
-                        onExport={handleExport}
+                      {/* Thickness Control */}
+                      <Card className="p-6 bg-card-soft border-2 border-primary/20">
+                        <div className="space-y-4">
+                          <div className="flex items-center gap-2">
+                            <Layers className="w-5 h-5 text-primary" />
+                            <Label className="font-display text-lg font-semibold">Thickness</Label>
+                          </div>
+                          
+                          <div className="space-y-2">
+                            <div className="flex justify-between text-sm text-muted-foreground">
+                              <span>Thin</span>
+                              <span className="font-semibold text-primary">{thickness.toFixed(1)}mm</span>
+                              <span>Thick</span>
+                            </div>
+                            <Slider
+                              value={[thickness]}
+                              onValueChange={(value) => setThickness(value[0])}
+                              min={0.3}
+                              max={2}
+                              step={0.1}
+                              className="w-full"
+                            />
+                          </div>
+
+                          <div className="grid grid-cols-3 gap-2">
+                            <Button
+                              variant="soft"
+                              size="sm"
+                              onClick={() => setThickness(0.5)}
+                              className="text-xs"
+                            >
+                              Thin (0.5mm)
+                            </Button>
+                            <Button
+                              variant="soft"
+                              size="sm"
+                              onClick={() => setThickness(1)}
+                              className="text-xs"
+                            >
+                              Medium (1mm)
+                            </Button>
+                            <Button
+                              variant="soft"
+                              size="sm"
+                              onClick={() => setThickness(1.5)}
+                              className="text-xs"
+                            >
+                              Thick (1.5mm)
+                            </Button>
+                          </div>
+                        </div>
+                      </Card>
+
+                      {/* Keyhole Position */}
+                      <FreeKeyholePositioner
+                        position={keychainHolePosition}
+                        onPositionChange={setKeychainHolePosition}
+                        keychainWidth={selectedSize.width}
+                        keychainHeight={selectedSize.height}
                       />
+
+                      {/* Export Options */}
+                      <Card className="p-6 bg-gradient-soft border-2 border-accent/20">
+                        <div className="space-y-4">
+                          <div className="flex items-center gap-2">
+                            <Sparkles className="w-5 h-5 text-accent" />
+                            <Label className="font-display text-lg font-semibold">Ready to Create?</Label>
+                          </div>
+                          
+                          <div className="space-y-3">
+                            <div className="p-3 bg-background/50 rounded-lg">
+                              <p className="text-sm font-medium mb-1">Free Tokens Remaining: 5</p>
+                              <p className="text-xs text-muted-foreground">
+                                Each download uses 1 token. Subscribe for unlimited downloads!
+                              </p>
+                            </div>
+                            
+                            <p className="text-sm text-muted-foreground">
+                              Your custom keychain is ready! Export your design and bring it to life.
+                            </p>
+                          </div>
+
+                          <Button 
+                            variant="hero" 
+                            className="w-full gap-2" 
+                            onClick={handleExport}
+                          >
+                            <Download className="w-4 h-4" />
+                            Export 3D Model (1 Token)
+                          </Button>
+
+                          <Button 
+                            variant="outline" 
+                            className="w-full gap-2"
+                          >
+                            <Sparkles className="w-4 h-4" />
+                            Subscribe for Unlimited Downloads
+                          </Button>
+                        </div>
+                      </Card>
                     </TabsContent>
 
                     <TabsContent value="material" className="space-y-6 mt-6">

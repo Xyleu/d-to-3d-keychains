@@ -9,7 +9,6 @@ export interface SizeOption {
   width: number;
   height: number;
   depth: number;
-  price: string;
   popular?: boolean;
 }
 
@@ -24,16 +23,14 @@ export const sizePresets: SizeOption[] = [
     name: "Mini",
     width: 2,
     height: 2,
-    depth: 0.5,
-    price: "$3.99"
+    depth: 0.5
   },
   {
     id: "small",
     name: "Small",
     width: 3,
     height: 3,
-    depth: 0.8,
-    price: "$4.99"
+    depth: 0.8
   },
   {
     id: "medium",
@@ -41,7 +38,6 @@ export const sizePresets: SizeOption[] = [
     width: 4,
     height: 4,
     depth: 1,
-    price: "$5.99",
     popular: true
   },
   {
@@ -49,16 +45,14 @@ export const sizePresets: SizeOption[] = [
     name: "Large",
     width: 5,
     height: 5,
-    depth: 1.2,
-    price: "$7.99"
+    depth: 1.2
   },
   {
     id: "jumbo",
     name: "Jumbo",
     width: 6,
     height: 6,
-    depth: 1.5,
-    price: "$9.99"
+    depth: 1.5
   }
 ];
 
@@ -89,9 +83,6 @@ export const SizeSelector = ({ selectedSize, onSizeChange }: SizeSelectorProps) 
                 <div className="text-xs font-medium">{size.name}</div>
                 <div className="text-xs text-muted-foreground">
                   {size.width}x{size.height}cm
-                </div>
-                <div className="text-xs font-semibold text-primary mt-1">
-                  {size.price}
                 </div>
               </div>
             </Button>

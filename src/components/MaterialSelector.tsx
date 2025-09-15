@@ -10,7 +10,6 @@ export interface MaterialOption {
   metalness: number;
   roughness: number;
   icon: React.ReactNode;
-  price?: string;
 }
 
 interface MaterialSelectorProps {
@@ -25,8 +24,7 @@ export const materials: MaterialOption[] = [
     color: "#FF69B4",
     metalness: 0.1,
     roughness: 0.3,
-    icon: <Droplet className="w-4 h-4" />,
-    price: "$4.99"
+    icon: <Droplet className="w-4 h-4" />
   },
   {
     id: "metal",
@@ -34,8 +32,7 @@ export const materials: MaterialOption[] = [
     color: "#C0C0C0",
     metalness: 0.9,
     roughness: 0.2,
-    icon: <Gem className="w-4 h-4" />,
-    price: "$9.99"
+    icon: <Gem className="w-4 h-4" />
   },
   {
     id: "wood",
@@ -43,8 +40,7 @@ export const materials: MaterialOption[] = [
     color: "#8B4513",
     metalness: 0,
     roughness: 0.8,
-    icon: <TreePine className="w-4 h-4" />,
-    price: "$7.99"
+    icon: <TreePine className="w-4 h-4" />
   },
   {
     id: "acrylic",
@@ -52,8 +48,7 @@ export const materials: MaterialOption[] = [
     color: "#FFB6C1",
     metalness: 0.3,
     roughness: 0.1,
-    icon: <Sparkles className="w-4 h-4" />,
-    price: "$6.99"
+    icon: <Sparkles className="w-4 h-4" />
   },
   {
     id: "resin",
@@ -61,8 +56,7 @@ export const materials: MaterialOption[] = [
     color: "#E6E6FA",
     metalness: 0.2,
     roughness: 0.15,
-    icon: <Palette className="w-4 h-4" />,
-    price: "$8.99"
+    icon: <Palette className="w-4 h-4" />
   }
 ];
 
@@ -91,7 +85,6 @@ export const MaterialSelector = ({ selectedMaterial, onMaterialChange }: Materia
               </div>
               <div className="text-center">
                 <div className="text-xs font-medium">{material.name}</div>
-                <div className="text-xs text-muted-foreground">{material.price}</div>
               </div>
             </Button>
           ))}
