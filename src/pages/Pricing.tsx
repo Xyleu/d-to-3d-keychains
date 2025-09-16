@@ -150,7 +150,7 @@ const Pricing = () => {
                       <span className="text-3xl font-bold">{plan.price}</span>
                       <span className="text-muted-foreground">{plan.period}</span>
                     </div>
-                    <Badge variant="soft" className="text-sm">
+                    <Badge variant="secondary" className="text-sm bg-primary-soft">
                       {plan.tokens}
                     </Badge>
                   </div>
