@@ -34,7 +34,7 @@ const KeychainModel = ({
     if (imageTexture) {
       const loader = new THREE.TextureLoader();
       loader.load(imageTexture, (loadedTexture) => {
-        loadedTexture.format = THREE.RGBAFormat;
+        loadedTexture.colorSpace = THREE.SRGBColorSpace;
         loadedTexture.needsUpdate = true;
         setTexture(loadedTexture);
       });
@@ -67,8 +67,8 @@ const KeychainModel = ({
     }
   };
 
-  // Don't render anything if no texture is loaded
-  if (!imageTexture && !texture) {
+  // Show placeholder if no image uploaded yet
+  if (!imageTexture) {
     return (
       <>
         {/* Placeholder when no image */}
