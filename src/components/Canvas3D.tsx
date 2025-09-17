@@ -108,26 +108,75 @@ const KeychainModel = ({
 
   return (
     <>
-      {/* Main keychain body */}
-      <Box
+      {/* Main keychain body with different materials for each face */}
+      <mesh
         ref={meshRef}
-        args={[size.width, size.height, thickness]}
         position={[0, 0, 0]}
         onPointerOver={() => setHovered(true)}
         onPointerOut={() => setHovered(false)}
       >
-        <meshStandardMaterial 
-          color={hovered ? "#FFB6C1" : getKeychainColor()}
-          map={texture}
-          transparent={true}
-          opacity={keychainColor === "#FFFFFF" && texture ? 0.9 : 1}
-          alphaMap={texture}
-          alphaTest={0.5}
-          roughness={material.roughness}
-          metalness={material.metalness}
-          side={THREE.DoubleSide}
-        />
-      </Box>
+        <boxGeometry args={[size.width, size.height, thickness]} />
+        {[
+          // Right face (positive X) - plain
+          <meshStandardMaterial
+            key="right"
+            attach="material-0"
+            color={getKeychainColor()}
+            roughness={material.roughness}
+            metalness={material.metalness}
+          />,
+          // Left face (negative X) - plain
+          <meshStandardMaterial
+            key="left"
+            attach="material-1"
+            color={getKeychainColor()}
+            roughness={material.roughness}
+            metalness={material.metalness}
+          />,
+          // Top face (positive Y) - plain
+          <meshStandardMaterial
+            key="top"
+            attach="material-2"
+            color={getKeychainColor()}
+            roughness={material.roughness}
+            metalness={material.metalness}
+          />,
+          // Bottom face (negative Y) - plain
+          <meshStandardMaterial
+            key="bottom"
+            attach="material-3"
+            color={getKeychainColor()}
+            roughness={material.roughness}
+            metalness={material.metalness}
+          />,
+          // Front face (positive Z) - with texture
+          <meshStandardMaterial
+            key="front"
+            attach="material-4"
+            color={hovered ? "#FFB6C1" : getKeychainColor()}
+            map={texture}
+            transparent={true}
+            opacity={keychainColor === "#FFFFFF" && texture ? 0.9 : 1}
+            alphaMap={texture}
+            alphaTest={0.5}
+            roughness={material.roughness}
+            metalness={material.metalness}
+          />,
+          // Back face (negative Z) - with texture
+          <meshStandardMaterial
+            key="back"
+            attach="material-5"
+            color={hovered ? "#FFB6C1" : getKeychainColor()}
+            map={texture}
+            transparent={true}
+            opacity={keychainColor === "#FFFFFF" && texture ? 0.9 : 1}
+            alphaMap={texture}
+            alphaTest={0.5}
+            roughness={material.roughness}
+            metalness={material.metalness}
+          />
+        ]}
+      </mesh>
 
       {/* Text overlay - Render on top of the keychain */}
       {textConfig && textConfig.text && (
