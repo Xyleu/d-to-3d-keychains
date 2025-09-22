@@ -67,7 +67,44 @@ const KeychainModel = ({
     }
   };
 
-  // Render the keychain (with or without texture)
+  // Show placeholder if no image uploaded yet
+  if (!imageTexture) {
+    return (
+      <>
+        {/* Placeholder when no image */}
+        <Box
+          args={[size.width, size.height, thickness]}
+          position={[0, 0, 0]}
+        >
+          <meshStandardMaterial 
+            color={getKeychainColor()}
+            roughness={material.roughness}
+            metalness={material.metalness}
+            opacity={0.3}
+            transparent
+          />
+        </Box>
+        
+        {/* Keychain hole indicator */}
+        <Sphere
+          args={[0.15, 16, 16]}
+          position={[keychainHolePosition.x, keychainHolePosition.y, thickness / 2 + 0.1]}
+        >
+          <meshStandardMaterial 
+            color="#FFD700"
+            emissive="#FFD700"
+            emissiveIntensity={0.3}
+          />
+        </Sphere>
+
+        {/* Hole ring */}
+        <mesh position={[keychainHolePosition.x, keychainHolePosition.y, thickness / 2]}>
+          <torusGeometry args={[0.2, 0.05, 8, 32]} />
+          <meshStandardMaterial color="#C0C0C0" metalness={0.8} roughness={0.2} />
+        </mesh>
+      </>
+    );
+  }
 
   return (
     <>
@@ -116,8 +153,8 @@ const KeychainModel = ({
           <meshStandardMaterial
             key="front"
             attach="material-4"
-            color={hovered ? "#FFB6C1" : getKeychainColor()}
-            map={texture}
+            color={texture ? (hovered ? "#FFB6C1" : "#FFFFFF") : getKeychainColor()}
+            map={texture || undefined}
             transparent={true}
             opacity={keychainColor === "#FFFFFF" && texture ? 0.9 : 1}
             alphaMap={texture}
@@ -129,8 +166,8 @@ const KeychainModel = ({
           <meshStandardMaterial
             key="back"
             attach="material-5"
-            color={hovered ? "#FFB6C1" : getKeychainColor()}
-            map={texture}
+            color={texture ? (hovered ? "#FFB6C1" : "#FFFFFF") : getKeychainColor()}
+            map={texture || undefined}
             transparent={true}
             opacity={keychainColor === "#FFFFFF" && texture ? 0.9 : 1}
             alphaMap={texture}
