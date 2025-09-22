@@ -33,11 +33,23 @@ const KeychainModel = ({
   useEffect(() => {
     if (imageTexture) {
       const loader = new THREE.TextureLoader();
-      loader.load(imageTexture, (loadedTexture) => {
-        loadedTexture.colorSpace = THREE.SRGBColorSpace;
-        loadedTexture.needsUpdate = true;
-        setTexture(loadedTexture);
-      });
+      loader.load(
+        imageTexture, 
+        (loadedTexture) => {
+          // Configure texture properly
+          loadedTexture.colorSpace = THREE.SRGBColorSpace;
+          loadedTexture.wrapS = THREE.RepeatWrapping;
+          loadedTexture.wrapT = THREE.RepeatWrapping;
+          loadedTexture.flipY = true;
+          loadedTexture.needsUpdate = true;
+          setTexture(loadedTexture);
+        },
+        undefined,
+        (error) => {
+          console.error('Error loading texture:', error);
+          setTexture(null);
+        }
+      );
     } else {
       setTexture(null);
     }
@@ -67,44 +79,8 @@ const KeychainModel = ({
     }
   };
 
-  // Show placeholder if no image uploaded yet
-  if (!imageTexture) {
-    return (
-      <>
-        {/* Placeholder when no image */}
-        <Box
-          args={[size.width, size.height, thickness]}
-          position={[0, 0, 0]}
-        >
-          <meshStandardMaterial 
-            color={getKeychainColor()}
-            roughness={material.roughness}
-            metalness={material.metalness}
-            opacity={0.3}
-            transparent
-          />
-        </Box>
-        
-        {/* Keychain hole indicator */}
-        <Sphere
-          args={[0.15, 16, 16]}
-          position={[keychainHolePosition.x, keychainHolePosition.y, thickness / 2 + 0.1]}
-        >
-          <meshStandardMaterial 
-            color="#FFD700"
-            emissive="#FFD700"
-            emissiveIntensity={0.3}
-          />
-        </Sphere>
-
-        {/* Hole ring */}
-        <mesh position={[keychainHolePosition.x, keychainHolePosition.y, thickness / 2]}>
-          <torusGeometry args={[0.2, 0.05, 8, 32]} />
-          <meshStandardMaterial color="#C0C0C0" metalness={0.8} roughness={0.2} />
-        </mesh>
-      </>
-    );
-  }
+  // Determine if we should show texture
+  const shouldShowTexture = texture !== null;
 
   return (
     <>
@@ -153,12 +129,8 @@ const KeychainModel = ({
           <meshStandardMaterial
             key="front"
             attach="material-4"
-            color={texture ? (hovered ? "#FFB6C1" : "#FFFFFF") : getKeychainColor()}
-            map={texture || undefined}
-            transparent={true}
-            opacity={keychainColor === "#FFFFFF" && texture ? 0.9 : 1}
-            alphaMap={texture}
-            alphaTest={0.5}
+            color={shouldShowTexture ? "#FFFFFF" : getKeychainColor()}
+            map={shouldShowTexture ? texture : undefined}
             roughness={material.roughness}
             metalness={material.metalness}
           />,
@@ -166,12 +138,8 @@ const KeychainModel = ({
           <meshStandardMaterial
             key="back"
             attach="material-5"
-            color={texture ? (hovered ? "#FFB6C1" : "#FFFFFF") : getKeychainColor()}
-            map={texture || undefined}
-            transparent={true}
-            opacity={keychainColor === "#FFFFFF" && texture ? 0.9 : 1}
-            alphaMap={texture}
-            alphaTest={0.5}
+            color={shouldShowTexture ? "#FFFFFF" : getKeychainColor()}
+            map={shouldShowTexture ? texture : undefined}
             roughness={material.roughness}
             metalness={material.metalness}
           />
