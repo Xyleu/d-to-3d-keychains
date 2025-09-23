@@ -2,19 +2,27 @@
   "project": {
     "name": "3D Keychain Designer",
     "version": "1.0.0",
-    "target_audience": ["Women", "Kids", "Gift shoppers"],
+    "description": "Web application for converting 2D images into customizable 3D printable keychains",
+    "target_audience": ["Women", "Kids", "Gift shoppers", "Creative individuals"],
     "tech_stack": {
       "frontend": {
-        "framework": "React with Vite",
-        "styling": "Tailwind CSS",
-        "3d_library": "Three.js (@react-three/fiber, @react-three/drei)",
-        "ui_components": "shadcn/ui",
-        "routing": "React Router DOM",
-        "language": "TypeScript"
+        "framework": "React 18.3.1 with Vite",
+        "styling": "Tailwind CSS with custom design system",
+        "3d_library": "Three.js with @react-three/fiber and @react-three/drei",
+        "ui_components": "shadcn/ui (fully customized)",
+        "routing": "React Router DOM v6",
+        "state_management": "@tanstack/react-query",
+        "language": "TypeScript",
+        "animations": "tailwindcss-animate",
+        "icons": "lucide-react"
       },
       "backend": {
         "current": "None (Frontend only)",
-        "planned": "Supabase (authentication, database, storage)"
+        "planned": "Supabase (authentication, database, storage, edge functions)"
+      },
+      "deployment": {
+        "current": "Lovable platform",
+        "planned": "Custom domain with CDN"
       }
     }
   },
@@ -34,12 +42,12 @@
       "tertiary": {
         "name": "Mint Green",
         "hsl": "160 45% 70%",
-        "usage": "Success states, accents"
+        "usage": "Success states, accents, completed actions"
       },
       "accent": {
         "name": "Sunshine Yellow",
         "hsl": "45 90% 70%",
-        "usage": "Highlights, badges, special features"
+        "usage": "Highlights, badges, special features, ratings"
       },
       "background": {
         "name": "Soft Pastel",
@@ -51,284 +59,386 @@
     "typography": {
       "display_font": "Quicksand",
       "body_font": "Inter",
-      "characteristics": "Rounded, friendly, playful"
+      "characteristics": "Rounded, friendly, playful, accessible"
     },
     
     "gradients": {
       "primary": "linear-gradient(135deg, Coral Pink, Lavender)",
       "secondary": "linear-gradient(135deg, Mint Green, Sunshine Yellow)",
-      "aurora": "45deg multi-color pastel gradient",
-      "soft": "180deg subtle pastel blend"
+      "aurora": "45deg multi-color pastel gradient with animation",
+      "soft": "180deg subtle pastel blend",
+      "hero": "radial gradient for hero sections"
     },
     
     "animations": {
       "float": "3s ease-in-out infinite vertical movement",
       "bounce-gentle": "2s ease-in-out infinite scale and translate",
       "shimmer": "3s linear infinite background position",
-      "fade-up": "0.5s ease-out opacity and translate"
+      "fade-up": "0.5s ease-out opacity and translate",
+      "spin-slow": "20s linear infinite rotation",
+      "pulse-soft": "2s ease-in-out infinite opacity"
     },
     
     "ui_principles": [
       "Rounded corners (1rem radius)",
       "Soft shadows with color tints",
       "Playful hover effects",
-      "Smooth transitions",
+      "Smooth transitions (300ms default)",
       "Child-friendly interface",
-      "Large touch targets"
+      "Large touch targets (44px minimum)",
+      "High contrast for accessibility",
+      "Mobile-first responsive design"
     ]
   },
   
   "current_features": {
-    "landing_page": {
-      "hero_section": {
+    "pages": {
+      "home": {
         "status": "completed",
-        "components": ["Hero.tsx"],
+        "path": "/",
+        "components": ["Hero.tsx", "Features.tsx", "Gallery.tsx"],
         "features": [
-          "Animated background elements",
-          "Call-to-action buttons",
+          "Animated hero section with floating elements",
+          "Feature showcase with 6 cards",
+          "Gallery of sample creations",
           "Statistics display",
-          "Hero image showcase"
+          "Call-to-action buttons"
         ]
       },
-      "features_section": {
+      "designer": {
         "status": "completed",
-        "components": ["Features.tsx"],
+        "path": "/designer",
+        "components": [
+          "Canvas3D.tsx",
+          "ImageUploader.tsx",
+          "ShapeSelector.tsx",
+          "SizeSelector.tsx",
+          "ColorCustomizer.tsx",
+          "MaterialSelector.tsx",
+          "TextOverlay.tsx",
+          "ImageEditor.tsx",
+          "ImageCropper.tsx",
+          "FreeKeyholePositioner.tsx"
+        ],
         "features": [
-          "Six feature cards",
-          "Icons and descriptions",
-          "Responsive grid layout"
+          "3D real-time preview",
+          "Image upload with drag-and-drop",
+          "Shape selection (rectangle, circle, heart, star)",
+          "Size customization",
+          "Color picker for keychain base",
+          "Material selection with properties",
+          "Text overlay with font customization",
+          "Image editing and cropping",
+          "Free keyhole positioning",
+          "STL file export"
+        ]
+      },
+      "pricing": {
+        "status": "completed",
+        "path": "/pricing",
+        "features": [
+          "Three-tier pricing cards",
+          "Feature comparison",
+          "Popular badge",
+          "Responsive layout"
         ]
       }
     },
     
-    "image_upload": {
+    "image_processing": {
       "status": "completed",
-      "components": ["ImageUploader.tsx"],
       "features": [
-        "Drag and drop support",
-        "File validation",
-        "Preview display",
-        "Playful animations",
-        "Multiple format support (JPG, PNG, GIF, WebP)"
+        "Multiple format support (JPG, PNG, GIF, WebP)",
+        "Drag and drop interface",
+        "File size validation",
+        "Image preview",
+        "Cropping tool with aspect ratios",
+        "Basic image editing (brightness, contrast, saturation)",
+        "Background removal suggestion"
       ]
     },
     
-    "3d_viewer": {
+    "3d_features": {
       "status": "completed",
-      "components": ["Canvas3D.tsx"],
       "features": [
-        "Interactive 3D keychain model",
-        "Texture mapping from uploaded image",
-        "Orbit controls (rotate, zoom, pan)",
-        "Real-time thickness adjustment",
-        "Keychain hole positioning",
-        "Ambient and directional lighting"
+        "Real-time 3D rendering with Three.js",
+        "Interactive orbit controls (rotate, zoom, pan)",
+        "Texture mapping from uploaded images",
+        "Multiple shape geometries",
+        "Adjustable thickness (2-10mm)",
+        "Material properties (metalness, roughness)",
+        "Ambient and directional lighting",
+        "Shadow rendering",
+        "Hover effects",
+        "STL export for 3D printing"
       ]
     },
     
-    "control_panel": {
+    "customization_options": {
       "status": "completed",
-      "components": ["ControlPanel.tsx"],
       "features": [
-        "Thickness slider (2-10mm)",
-        "Hole position selector (9 positions)",
-        "Download STL button",
-        "Reset button",
-        "Responsive layout"
+        "4 shape options (rectangle, circle, heart, star)",
+        "3 size presets (small, medium, large)",
+        "Custom dimensions input",
+        "Color picker with predefined palette",
+        "6 material presets",
+        "Text overlay with multiple fonts",
+        "Keyhole free positioning",
+        "Real-time preview updates"
       ]
     }
   },
   
-  "project_rules": {
-    "code_standards": [
-      "Use TypeScript for type safety",
-      "Component-based architecture",
-      "Semantic HTML elements",
-      "Design system tokens only (no hardcoded colors)",
-      "All colors must be HSL format",
-      "Responsive design mandatory",
-      "Accessibility considerations"
+  "known_issues": {
+    "current": [
+      "Large image files may slow down texture loading",
+      "WebGL context loss on some mobile devices",
+      "STL export needs optimization for complex shapes"
     ],
-    
-    "file_structure": {
-      "components": "Reusable UI components in src/components/",
-      "pages": "Route pages in src/pages/",
-      "assets": "Images and static files in src/assets/",
-      "ui_components": "shadcn components in src/components/ui/",
-      "hooks": "Custom hooks in src/hooks/"
-    },
-    
-    "styling_rules": [
-      "Always use design system tokens",
-      "Never use direct colors (text-white, bg-black, etc.)",
-      "Customize shadcn components with variants",
-      "Maintain consistency across all components",
-      "Mobile-first responsive approach"
+    "resolved": [
+      "Texture not displaying on 3D model - Fixed with proper loader configuration",
+      "Image upload not updating preview - Fixed with state management",
+      "3D canvas performance issues - Optimized with proper disposal"
     ]
   },
   
   "project_roadmap": {
-    "goal": "Create a seamless, all-in-one web service that converts user-uploaded 2D images into customizable, 3D printable keychain files",
-    
-    "phase_1_planning_research": {
-      "description": "Establish the business model and define the minimum viable product (MVP)",
-      "status": "In Progress",
-      "tasks": [
-        {
-          "task_id": "P1-T1",
-          "task_name": "Market Research",
-          "responsible_party": "Business",
-          "description": "Analyze competitors and identify target niche (women, kids, gift shoppers)",
-          "status": "Completed",
-          "notes": "Targeting women and kids market with playful design"
-        },
-        {
-          "task_id": "P1-T2",
-          "task_name": "Technology Stack Selection",
-          "responsible_party": "Full-stack",
-          "description": "Choose core technologies",
-          "status": "Completed",
-          "notes": "React, Vite, Three.js, TypeScript, Tailwind CSS, Supabase (planned)"
-        },
-        {
-          "task_id": "P1-T3",
-          "task_name": "User Experience (UX) Design",
-          "responsible_party": "Frontend",
-          "description": "Sketch user flow from image upload to customization and download",
-          "status": "Completed",
-          "notes": "Playful pastel design system implemented"
-        }
-      ]
+    "completed": {
+      "phase_1": {
+        "name": "MVP Development",
+        "features": [
+          "Basic 3D keychain preview",
+          "Image upload system",
+          "Shape and size customization",
+          "Material selection",
+          "Color customization",
+          "Text overlay",
+          "STL export",
+          "Responsive design",
+          "Landing page with features"
+        ]
+      }
     },
     
-    "phase_2_development": {
-      "description": "Build the core functionality of the system, starting with the MVP",
-      "status": "In Progress",
-      "tasks": [
-        {
-          "task_id": "P2-T1",
-          "task_name": "Backend Setup",
-          "responsible_party": "Backend",
-          "description": "Set up server, API endpoints for file uploads",
-          "status": "Pending",
-          "notes": "Will use Supabase for backend services"
-        },
-        {
-          "task_id": "P2-T2",
-          "task_name": "2D to 3D Conversion Logic",
-          "responsible_party": "Frontend/3D",
-          "description": "Convert JPG to 3D model using Three.js",
-          "status": "Completed",
-          "notes": "Using Three.js for real-time 3D rendering"
-        },
-        {
-          "task_id": "P2-T3",
-          "task_name": "Frontend Development",
-          "responsible_party": "Frontend",
-          "description": "Build UI for file upload and 3D model preview",
-          "status": "Completed",
-          "notes": "Drag-and-drop upload and 3D viewer implemented"
-        },
-        {
-          "task_id": "P2-T4",
-          "task_name": "Customization Features Logic",
-          "responsible_party": "Frontend/3D",
-          "description": "Implement thickness adjustment and keychain hole positioning",
-          "status": "Completed",
-          "notes": "Thickness slider (2-10mm) and 9 hole positions"
-        },
-        {
-          "task_id": "P2-T5",
-          "task_name": "Frontend Customization UI",
-          "responsible_party": "Frontend",
-          "description": "Create sliders and interactive elements for customization",
-          "status": "Completed",
-          "notes": "Control panel with sliders and position selector"
-        }
-      ]
+    "in_progress": {
+      "phase_2": {
+        "name": "Enhancement & Polish",
+        "timeline": "Current",
+        "tasks": [
+          "Performance optimization",
+          "Mobile experience improvements",
+          "Advanced image editing tools",
+          "Design templates library"
+        ]
+      }
     },
     
-    "phase_3_testing_deployment": {
-      "description": "Refine the system, ensure stability, and prepare for public launch",
-      "status": "Upcoming",
-      "tasks": [
-        {
-          "task_id": "P3-T1",
-          "task_name": "System Integration & Testing",
-          "responsible_party": "Full-stack",
-          "description": "Test full user flow and handle common errors",
-          "status": "Pending"
-        },
-        {
-          "task_id": "P3-T2",
-          "task_name": "Cloud Deployment",
-          "responsible_party": "Backend",
-          "description": "Deploy to cloud service and set up domain",
-          "status": "Pending",
-          "notes": "Consider Vercel for frontend, Supabase for backend"
-        },
-        {
-          "task_id": "P3-T3",
-          "task_name": "Launch & Marketing",
-          "responsible_party": "Business",
-          "description": "Launch website and promote on social media",
-          "status": "Pending"
-        }
-      ]
+    "upcoming": {
+      "phase_3": {
+        "name": "Backend Integration",
+        "timeline": "Q1 2024",
+        "tasks": [
+          "Supabase setup (auth, database, storage)",
+          "User accounts and saved designs",
+          "Design sharing and gallery",
+          "Cloud storage for images",
+          "Order management system"
+        ]
+      },
+      
+      "phase_4": {
+        "name": "E-commerce Features",
+        "timeline": "Q2 2024",
+        "tasks": [
+          "Shopping cart functionality",
+          "Stripe payment integration",
+          "Order processing workflow",
+          "Shipping calculator",
+          "Email notifications",
+          "Order tracking"
+        ]
+      },
+      
+      "phase_5": {
+        "name": "Advanced Features",
+        "timeline": "Q3-Q4 2024",
+        "tasks": [
+          "AI-powered image enhancement",
+          "Background removal AI",
+          "AR preview feature",
+          "Custom shape drawing tool",
+          "Multi-image collage keychains",
+          "3D printing service integration",
+          "Bulk order management",
+          "White-label solutions"
+        ]
+      }
     }
   },
   
   "future_enhancements": {
     "short_term": [
-      "Image cropping and editing tools",
-      "Multiple material options (plastic, metal, wood)",
-      "Color customization for keychain",
-      "Text overlay on keychain",
-      "Size presets (small, medium, large)",
-      "Save designs to user account (Supabase auth)",
-      "Design gallery and sharing"
+      "Undo/redo functionality in editor",
+      "Keyboard shortcuts for common actions",
+      "More font options for text overlay",
+      "Gradient colors for keychain base",
+      "Download preview image",
+      "Share design via link",
+      "Tutorial/onboarding flow"
     ],
     
     "medium_term": [
-      "Shopping cart functionality",
-      "Payment integration (Stripe)",
-      "Order processing workflow",
-      "Shipping calculator",
-      "Bulk order discounts",
-      "Promo codes",
-      "Order history tracking",
-      "Cloud storage for uploaded images"
+      "Design templates marketplace",
+      "Collaborative design editing",
+      "Advanced text effects (curve, outline)",
+      "Multiple keychains in single order",
+      "Gift card functionality",
+      "Loyalty program",
+      "Referral system",
+      "API for third-party integrations"
     ],
     
     "long_term": [
-      "AI-powered image enhancement",
-      "AR preview (view keychain in real world)",
-      "Custom shape options beyond rectangle",
-      "Multi-image collage keychains",
-      "Collaborative design (share with friends)",
-      "Mobile app version",
-      "3D printing service integration",
-      "Marketplace for user designs"
+      "Mobile native apps (iOS/Android)",
+      "Desktop application",
+      "VR design experience",
+      "Blockchain-based design ownership",
+      "NFT integration for unique designs",
+      "International shipping",
+      "Franchise opportunities",
+      "B2B enterprise solutions"
     ]
   },
   
-  "optimization_goals": [
-    "Lazy load 3D viewer components",
-    "Optimize image uploads (compression, resizing)",
-    "Implement progressive web app features",
-    "CDN for static assets",
-    "Code splitting for better performance",
-    "SEO optimization for organic traffic"
-  ],
+  "technical_optimizations": {
+    "performance": [
+      "Implement React.lazy for code splitting",
+      "Use React.memo for expensive components",
+      "Optimize Three.js render loop",
+      "Implement texture compression",
+      "Add service worker for offline support",
+      "Use CDN for static assets",
+      "Implement image lazy loading",
+      "WebAssembly for heavy computations"
+    ],
+    
+    "seo": [
+      "Server-side rendering consideration",
+      "Meta tags optimization",
+      "Structured data markup",
+      "Sitemap generation",
+      "Open Graph tags",
+      "Twitter Card tags",
+      "Schema.org markup",
+      "Performance metrics optimization"
+    ],
+    
+    "accessibility": [
+      "WCAG 2.1 AA compliance",
+      "Keyboard navigation support",
+      "Screen reader compatibility",
+      "High contrast mode",
+      "Focus indicators",
+      "Alt text for all images",
+      "ARIA labels and roles",
+      "Skip navigation links"
+    ]
+  },
   
   "business_model": {
     "revenue_streams": [
-      "Direct keychain sales",
-      "Premium design features",
-      "Bulk order discounts",
-      "White-label solutions for businesses",
-      "Design marketplace commission"
+      "Direct keychain sales ($5-15 per unit)",
+      "Premium features subscription ($9.99/month)",
+      "Bulk order discounts (10%+ off)",
+      "Express shipping options",
+      "Custom enterprise solutions",
+      "Design marketplace commission (15%)",
+      "Advertising partnerships",
+      "Affiliate program"
     ],
-    "pricing_strategy": "Freemium model with paid manufacturing"
-  }
+    
+    "pricing_strategy": {
+      "model": "Freemium",
+      "free_tier": "Design creation and preview",
+      "paid_features": "STL download, high-res export, premium templates",
+      "manufacturing": "Per-unit pricing with volume discounts"
+    },
+    
+    "target_metrics": {
+      "conversion_rate": "5-10% from free to paid",
+      "average_order_value": "$25-40",
+      "customer_lifetime_value": "$150-250",
+      "monthly_active_users": "10,000+ by end of 2024"
+    }
+  },
+  
+  "dependencies": {
+    "core": [
+      "@react-three/fiber",
+      "@react-three/drei",
+      "three",
+      "react",
+      "react-dom",
+      "react-router-dom",
+      "@tanstack/react-query"
+    ],
+    
+    "ui": [
+      "All @radix-ui components",
+      "lucide-react",
+      "tailwindcss",
+      "tailwindcss-animate",
+      "class-variance-authority",
+      "clsx",
+      "tailwind-merge"
+    ],
+    
+    "utilities": [
+      "date-fns",
+      "zod",
+      "react-hook-form",
+      "@hookform/resolvers"
+    ],
+    
+    "planned": [
+      "@supabase/supabase-js",
+      "stripe",
+      "react-dropzone",
+      "react-color",
+      "@tensorflow/tfjs"
+    ]
+  },
+  
+  "deployment": {
+    "current": {
+      "platform": "Lovable",
+      "url": "https://[project].lovable.app",
+      "build": "Vite production build",
+      "preview": "Live preview in development"
+    },
+    
+    "planned": {
+      "production": "Custom domain with SSL",
+      "cdn": "CloudFlare for static assets",
+      "monitoring": "Sentry for error tracking",
+      "analytics": "Google Analytics 4",
+      "backup": "Automated daily backups"
+    }
+  },
+  
+  "team_structure": {
+    "current": "Solo developer with AI assistance",
+    "planned": {
+      "frontend_developer": "UI/UX implementation",
+      "backend_developer": "API and database",
+      "3d_specialist": "Advanced 3D features",
+      "designer": "UI/UX design",
+      "marketing": "Growth and promotion",
+      "support": "Customer service"
+    }
+  },
+  
+  "last_updated": "2024-01-09",
+  "version_control": "Git with feature branches",
+  "documentation": "Inline code comments and this JSON file"
 }
